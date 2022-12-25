@@ -124,6 +124,7 @@
     <Compile Include="Model\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\TonKho.cs" />
     <Compile Include="Model\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -152,6 +153,7 @@
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SuplierViewModel.cs" />
     <Page Include="CustomerWindown.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

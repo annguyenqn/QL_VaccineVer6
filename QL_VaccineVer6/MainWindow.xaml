@@ -318,12 +318,12 @@
                             <Separator></Separator>
                         </Grid>
                         <Grid Grid.Row="2">
-                            <ListView>
+                            <ListView ItemsSource="{Binding TonKhoList}">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="STT"></GridViewColumn>
-                                        <GridViewColumn Header="Tên vaccine" Width="150"></GridViewColumn>
-                                        <GridViewColumn Header="Số lượng tồn"></GridViewColumn>
+                                        <GridViewColumn Header="STT" DisplayMemberBinding="{Binding STT}" ></GridViewColumn>
+                                        <GridViewColumn Header="Tên vaccine" Width="150"  DisplayMemberBinding="{Binding vaccine.TenVac}" ></GridViewColumn>
+                                        <GridViewColumn Header="Số lượng tồn" DisplayMemberBinding="{Binding SoLuong}"></GridViewColumn>
                                     </GridView>
                                 </ListView.View>
                             </ListView>

@@ -1,6 +1,7 @@
 ﻿using QL_VaccineVer6.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ namespace QL_VaccineVer6.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
+        private ObservableCollection<TonKho> _TonKhoList;
+        public ObservableCollection<TonKho> TonKhoList { get => _TonKhoList; set { _TonKhoList = value; OnPropertyChanged(); } }
         public bool Isloaded = false;
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand CustomerCommand { get; set; }
@@ -39,6 +42,7 @@ namespace QL_VaccineVer6.ViewModel
                 if (loginVM.IsLogin)
                 {
                     p.Show();
+                    LoadTonKhoData();
                 }
                 else
                 {
@@ -55,6 +59,40 @@ namespace QL_VaccineVer6.ViewModel
             //kiểm tra có được nhấn không( dựa vào chức vụ) , tạo windown mới và showdialog lên.
             //var a = DataProvider.Ins.DB.BenhNhans.ToList();
         }
-        
+        void LoadTonKhoData()
+        {
+            TonKhoList = new ObservableCollection<TonKho>();
+
+            var objectList = DataProvider.Ins.DB.Vaccines;
+
+            int i = 1;
+            foreach (var item in objectList)
+            {
+                var inputList = DataProvider.Ins.DB.InputIfs.Where(p => p.IdVac == item.IdVac);
+                var outputList = DataProvider.Ins.DB.OutputIfs.Where(p => p.IdVac == item.IdVac);
+
+                int sumInput = 0;
+                int sumOutput = 0;
+
+                if (inputList != null)
+                {
+                    sumInput = (int)inputList.Sum(p => p.Soluong);
+                }
+                if (outputList != null)
+                {
+                    sumOutput = (int)outputList.Sum(p => p.Soluong);
+                }
+
+                TonKho tonkho = new TonKho();
+                tonkho.STT = i;
+                tonkho.SoLuong = sumInput - sumOutput;
+                tonkho.vaccine= item;
+
+                TonKhoList.Add(tonkho);
+
+                i++;
+            }
+
+        }
     }
 }

@@ -9,19 +9,21 @@
 
 namespace QL_VaccineVer6.Model
 {
+    using QL_VaccineVer6.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class NhacungCap
+    public partial class NhacungCap :BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NhacungCap()
         {
             this.Vaccines = new HashSet<Vaccine>();
         }
-    
+
+        private String _TenNcc;
         public int IdNcc { get; set; }
-        public string TenNcc { get; set; }
+        public string TenNcc { get => _TenNcc; set { _TenNcc = value;OnPropertyChanged(); }  }
         public string Adress { get; set; }
         public string Phone { get; set; }
     
