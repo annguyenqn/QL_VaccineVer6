@@ -9,10 +9,11 @@
 
 namespace QL_VaccineVer6.Model
 {
+    using QL_VaccineVer6.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class BenhNhan
+    public partial class BenhNhan : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BenhNhan()
@@ -24,6 +25,8 @@ namespace QL_VaccineVer6.Model
         public string HoTen { get; set; }
         public string Phone { get; set; }
         public string DiaChi { get; set; }
+        public string IdVac { get; set; }
+    
         public Nullable<System.DateTime> NgayTiem { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

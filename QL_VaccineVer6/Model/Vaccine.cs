@@ -9,10 +9,11 @@
 
 namespace QL_VaccineVer6.Model
 {
+    using QL_VaccineVer6.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class Vaccine
+    public partial class Vaccine : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Vaccine()
@@ -20,15 +21,22 @@ namespace QL_VaccineVer6.Model
             this.InputIfs = new HashSet<InputIf>();
             this.OutputIfs = new HashSet<OutputIf>();
         }
-    
-        public string IdVac { get; set; }
-        public string TenVac { get; set; }
-        public int IdNcc { get; set; }
-    
+
+        private string _IdVac;
+        public string IdVac { get => _IdVac; set { _IdVac = value; OnPropertyChanged(); } }
+        private string _TenVac;
+        public string TenVac { get => _TenVac ; set { _TenVac = value; OnPropertyChanged(); } }
+        private int _IdNcc;
+       public int IdNcc { get => _IdNcc; set { _IdNcc = value; OnPropertyChanged(); } }
+ 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InputIf> InputIfs { get; set; }
-        public virtual NhacungCap NhacungCap { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+        private NhacungCap _Ncc;
+        public virtual NhacungCap NhacungCap { get => _Ncc; set { _Ncc = value; OnPropertyChanged(); }
+}
+
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OutputIf> OutputIfs { get; set; }
     }
 }
