@@ -13,8 +13,9 @@ namespace QL_VaccineVer6.ViewModel
     {
         private ObservableCollection<Model.BenhNhan> _List;
         public ObservableCollection<Model.BenhNhan> List { get => _List; set { _List = value; OnPropertyChanged(); } }    //hiển thị 
-        private ObservableCollection<Model.Vaccine> _Suplier;
-        public ObservableCollection<Model.Vaccine> Suplier { get => _Vaccine; set { _Vaccine = value; OnPropertyChanged(); } }
+
+        private ObservableCollection<Model.Vaccine> _Vaccine;
+        public ObservableCollection<Model.Vaccine> Vaccine { get => _Vaccine; set { _Vaccine = value; OnPropertyChanged(); } }
 
         private BenhNhan _SelectedItem;
         public BenhNhan SelectedItem
@@ -29,8 +30,20 @@ namespace QL_VaccineVer6.ViewModel
                     DisplayName = SelectedItem.HoTen;
                     Phone = SelectedItem.Phone;
                     Address = SelectedItem.DiaChi;
+                    SelectedVaccine = SelectedItem.Vaccine;
+                    ContractDate = SelectedItem.NgayTiem;
                     ;
                 }
+            }
+        }
+        private Model.Vaccine _SelectedVaccine;
+        public Model.Vaccine SelectedVaccine
+        {
+            get => _SelectedVaccine;
+            set
+            {
+                _SelectedVaccine = value;
+                OnPropertyChanged();
             }
         }
 
@@ -61,6 +74,7 @@ namespace QL_VaccineVer6.ViewModel
         public CustomerViewModel()
         {
             List = new ObservableCollection<BenhNhan>(DataProvider.Ins.DB.BenhNhans);
+            Vaccine = new ObservableCollection<Model.Vaccine>(DataProvider.Ins.DB.Vaccines);
 
             AddCommand = new RelayCommand<object>((p) =>
             {
@@ -68,7 +82,7 @@ namespace QL_VaccineVer6.ViewModel
 
             }, (p) =>
             {
-                var benhNhan = new BenhNhan() { HoTen = DisplayName, Phone = Phone, DiaChi = Address , IdVac= };
+                var benhNhan = new Model.BenhNhan() { IdBn = Guid.NewGuid().ToString(), HoTen = DisplayName, Phone = Phone, DiaChi = Address ,NgayTiem = ContractDate , IdVac = SelectedVaccine.IdVac };
 
                 DataProvider.Ins.DB.BenhNhans.Add(benhNhan);
                 DataProvider.Ins.DB.SaveChanges();
@@ -93,6 +107,7 @@ namespace QL_VaccineVer6.ViewModel
                 Suplier.HoTen = DisplayName;
                 Suplier.Phone = Phone;
                 Suplier.DiaChi = Address;
+                Suplier.IdVac = SelectedVaccine.IdVac;
                 DataProvider.Ins.DB.SaveChanges();
 
                 SelectedItem.HoTen = DisplayName;

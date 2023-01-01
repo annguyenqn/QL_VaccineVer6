@@ -9,18 +9,28 @@
 
 namespace QL_VaccineVer6.Model
 {
+    using QL_VaccineVer6.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class User : BaseViewModel
     {
-        public int IdUser { get; set; }
-        public int IdRole { get; set; }
-        public string UserName { get; set; }
+        private int _User;
+        public int IdUser { get => _User; set { _User = value; OnPropertyChanged(); } }
+        private int _IdRole;
+        public int IdRole { get => _IdRole; set { _IdRole = value; OnPropertyChanged(); } }
+        public string _UserName;
+        public string UserName { get => _UserName; set { _UserName = value; OnPropertyChanged(); } }
         public string Pass { get; set; }
-        public string HoTen { get; set; }
+        public string _HoTen;
+        public string HoTen { get => _HoTen; set { _HoTen = value; OnPropertyChanged(); } }
         public string Phone { get; set; }
-    
-        public virtual UserRole UserRole { get; set; }
+
+        private UserRole _UserRole;
+
+        public virtual UserRole UserRole
+        {
+            get => _UserRole; set { _UserRole = value; OnPropertyChanged(); }
+        }
     }
 }

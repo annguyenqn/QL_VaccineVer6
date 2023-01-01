@@ -9,23 +9,25 @@
 
 namespace QL_VaccineVer6.Model
 {
-    using QL_VaccineVer6.ViewModel;
     using System;
     using System.Collections.Generic;
-    
-    public partial class NhacungCap :BaseViewModel
+    using QL_VaccineVer6.ViewModel;
+
+
+    public partial class NhacungCap : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NhacungCap()
         {
             this.Vaccines = new HashSet<Vaccine>();
         }
-
         private String _TenNcc;
         public int IdNcc { get; set; }
-        public string TenNcc { get => _TenNcc; set { _TenNcc = value;OnPropertyChanged(); }  }
-        public string Adress { get; set; }
-        public string Phone { get; set; }
+        public string TenNcc { get => _TenNcc; set { _TenNcc = value; OnPropertyChanged(); } }
+        public string _Adress;
+        public string Adress { get => _Adress; set { _Adress = value; OnPropertyChanged(); } }
+        public string _Phone;
+        public string Phone { get => _Phone; set { _Phone = value; OnPropertyChanged(); } }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vaccine> Vaccines { get; set; }

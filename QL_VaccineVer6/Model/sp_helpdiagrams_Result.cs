@@ -10,18 +10,13 @@
 namespace QL_VaccineVer6.Model
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class InputIf
+    public partial class sp_helpdiagrams_Result
     {
-        public string IdInputIf { get; set; }
-        public string IdInput { get; set; }
-        public string IdVac { get; set; }
-        public Nullable<int> Soluong { get; set; }
-        public Nullable<double> IntputPrice { get; set; }
-        public Nullable<double> OutputPrice { get; set; }
-    
-        public virtual Input Input { get; set; }
-        public virtual Vaccine Vaccine { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

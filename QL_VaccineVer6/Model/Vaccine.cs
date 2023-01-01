@@ -9,15 +9,16 @@
 
 namespace QL_VaccineVer6.Model
 {
-    using QL_VaccineVer6.ViewModel;
     using System;
     using System.Collections.Generic;
-    
+    using QL_VaccineVer6.ViewModel;
+
     public partial class Vaccine : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Vaccine()
         {
+            this.BenhNhans = new HashSet<BenhNhan>();
             this.InputIfs = new HashSet<InputIf>();
             this.OutputIfs = new HashSet<OutputIf>();
         }
@@ -25,18 +26,22 @@ namespace QL_VaccineVer6.Model
         private string _IdVac;
         public string IdVac { get => _IdVac; set { _IdVac = value; OnPropertyChanged(); } }
         private string _TenVac;
-        public string TenVac { get => _TenVac ; set { _TenVac = value; OnPropertyChanged(); } }
+        public string TenVac { get => _TenVac; set { _TenVac = value; OnPropertyChanged(); } }
         private int _IdNcc;
-       public int IdNcc { get => _IdNcc; set { _IdNcc = value; OnPropertyChanged(); } }
- 
+        public int IdNcc { get => _IdNcc; set { _IdNcc = value; OnPropertyChanged(); } }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BenhNhan> BenhNhans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InputIf> InputIfs { get; set; }
 
         private NhacungCap _Ncc;
-        public virtual NhacungCap NhacungCap { get => _Ncc; set { _Ncc = value; OnPropertyChanged(); }
-}
+        public virtual NhacungCap NhacungCap
+        {
+            get => _Ncc; set { _Ncc = value; OnPropertyChanged(); }
+        }
 
-[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OutputIf> OutputIfs { get; set; }
     }
 }

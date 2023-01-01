@@ -20,15 +20,26 @@ namespace QL_VaccineVer6.Model
         {
             this.OutputIfs = new HashSet<OutputIf>();
         }
-    
-        public string IdBn { get; set; }
-        public string HoTen { get; set; }
-        public string Phone { get; set; }
-        public string DiaChi { get; set; }
-        public string IdVac { get; set; }
-    
-        public Nullable<System.DateTime> NgayTiem { get; set; }
-    
+        private string _IdBn;
+        public string IdBn { get => _IdBn; set { _IdBn = value; OnPropertyChanged(); } }
+        private string _HoTen;
+        public string HoTen { get => _HoTen; set { _HoTen = value; OnPropertyChanged(); } }
+        private string _Phone;
+        public string Phone { get => _Phone; set { _Phone = value; OnPropertyChanged(); } }
+        private string _Diachi;
+        public string DiaChi { get => _Diachi; set { _Diachi = value; OnPropertyChanged(); } }
+        private Nullable<System.DateTime> _NgayTiem;
+        public Nullable<System.DateTime> NgayTiem { get => _NgayTiem; set { _NgayTiem = value; OnPropertyChanged(); } }
+
+        private string _IdVac;
+        public string IdVac { get => _IdVac; set { _IdVac = value; OnPropertyChanged(); } }
+
+        private Vaccine _Vaccine;
+        public virtual Vaccine Vaccine
+        {
+            get => _Vaccine; set { _Vaccine = value; OnPropertyChanged(); }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OutputIf> OutputIfs { get; set; }
     }
