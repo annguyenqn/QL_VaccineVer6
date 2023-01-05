@@ -60,9 +60,24 @@ namespace QL_VaccineVer6.ViewModel
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
 
+        public ICommand  DeleteCommand  { get; set; }
+        public ICommand ClearCommand { get; set; }
         public SuplierViewModel()
         {
             List = new ObservableCollection<NhacungCap>(DataProvider.Ins.DB.NhacungCaps);
+
+            ClearCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+
+            }, (p) =>
+            {
+                DisplayName = "";
+                Address = "";
+                Phone = "";
+                Email = "";
+            });
+
 
             AddCommand = new RelayCommand<object>((p) =>
             {
@@ -98,6 +113,27 @@ namespace QL_VaccineVer6.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
 
                 SelectedItem.TenNcc = DisplayName;
+            });
+            DeleteCommand = new RelayCommand<object>((p) =>
+            {
+                if (SelectedItem == null)
+                    return false;
+
+                var displayList = DataProvider.Ins.DB.NhacungCaps.Where(x => x.IdNcc == SelectedItem.IdNcc);
+                if (displayList != null && displayList.Count() != 0)
+                    return true;
+
+                return false;
+
+            }, (p) =>
+            {
+                var Object = DataProvider.Ins.DB.NhacungCaps.Where(x => x.IdNcc == SelectedItem.IdNcc).SingleOrDefault();
+                DataProvider.Ins.DB.NhacungCaps.Remove(Object);
+                DataProvider.Ins.DB.SaveChanges();
+                List.Remove(Object);
+
+
+
             });
         }
     }

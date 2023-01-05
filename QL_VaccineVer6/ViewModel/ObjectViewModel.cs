@@ -62,6 +62,7 @@ namespace QL_VaccineVer6.ViewModel
 
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
         public ObjectViewModel()
         {
@@ -103,6 +104,7 @@ namespace QL_VaccineVer6.ViewModel
 
                 SelectedItem.TenVac = DisplayName;
             });
+         
         }
     }
 }
